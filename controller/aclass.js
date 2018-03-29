@@ -13,6 +13,7 @@ var schema =   {"type": "object","properties": {
     "instructorid": { "type": "string","minLength": 1,"maxLength": 50},
     },"required": ["name", "time", "dayofweek"]};  
 
+
     var schemaUp =   {"type": "object","properties": {
         "dayofweek": {"type": "string"},
         "name":{ "type": "string"},
