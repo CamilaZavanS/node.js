@@ -10,7 +10,7 @@ var schema =   {"type": "object","properties": {
     "capacity":{"type": "string"},
     "description":{"type": "string"},
     "endtime":{"type": "string"},
-    "instructorid": { "type": "string","minLength": 1,"maxLength": 50},
+    "instructorid": { "type": "string","minLength": 1,"maxLength": 22},
     },"required": ["name", "time", "dayofweek"]};  
 
 
