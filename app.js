@@ -6,6 +6,8 @@ var plan = require('./controller/plan.js');
 var aclass = require('./controller/aclass.js');
 var unit = require('./controller/unit.js');
 var promotion = require('./controller/promotion.js');
+var payment = require('./controller/payment.js');
+var contract = require('./controller/contract.js');
 var security = require('./security/auth.js');
 var app = express();
 
@@ -101,8 +103,37 @@ app.get('/v1/plan', function (req, res) {
     security.checkAuth(req, res, plan.getAll);
 })
 
-//contract
-//payment
+app.get('/v1/payment', function (req, res) {
+    security.checkAuth(req, res, payment.getAll);
+})
+
+app.get('/v1/payment/:id', function (req, res) {
+    security.checkAuth(req, res, payment.getById); 
+})
+
+app.put('/v1/payment/:id', function (req, res) {
+    security.checkAuth(req, res, payment.update);
+})
+
+app.post('/v1/payment', function (req, res) {
+    security.checkAuth(req, res, payment.create);
+})
+
+app.get('/v1/contract', function (req, res) {
+    security.checkAuth(req, res, member.getAll);
+})
+
+app.get('/v1/contract/:id', function (req, res) {
+    security.checkAuth(req, res, member.getById); 
+})
+
+app.put('/v1/contract/:id', function (req, res) {
+    security.checkAuth(req, res, member.update);
+})
+
+app.post('/v1/contract', function (req, res) {
+    security.checkAuth(req, res, member.create);
+})
 
 var server = app.listen(3000, function () {
    var host = server.address().address
