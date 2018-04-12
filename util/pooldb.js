@@ -54,7 +54,22 @@ exports.execSelect = function(req, res, sql){
                 res.status(500).send(err);
             }else{
                 client.end()
-                res.status(200).send(JSON.stringify(result.rows));
+                res.status(200).send({ 'data': JSON.stringify(result.rows) });
+            }
+        })
+    })    
+}
+
+exports.execSelectWithResult = function(res, sql, result, callback){
+    pool.connect().then( client => {
+        client.query(sql, function(err, result){
+            if (err){
+                client.end()
+                // res.status(500).send(err);
+                result = {error: err}
+            }else{
+                client.end()
+                result = result.rows
             }
         })
     })    

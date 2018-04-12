@@ -8,13 +8,18 @@ var unit = require('./controller/unit.js');
 var promotion = require('./controller/promotion.js');
 var payment = require('./controller/payment.js');
 var contract = require('./controller/contract.js');
+var site = require('./controller/site.js');
 var security = require('./security/auth.js');
 var app = express();
 
 app.disable('x-powered-by')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : false}));
-        
+
+app.get('/v1/site/data', function (req, res) {
+    security.checkAuth(req, res, site.data);
+})
+
 app.get('/v1/member', function (req, res) {
     security.checkAuth(req, res, member.getAll);
 })

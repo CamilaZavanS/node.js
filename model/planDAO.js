@@ -1,7 +1,7 @@
 var db = require('../util/pooldb.js')
 
 exports.select = function (req, res){
-    selectSQL = "select * from plan where companygroupid = " + req.body.groupid + " limit 10"
+    selectSQL = "select * from plan where companygroupid = " + req.body.groupid 
     db.execSelect(req, res, selectSQL)    
 }
 
