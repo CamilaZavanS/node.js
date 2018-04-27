@@ -18,10 +18,10 @@ exports.execInsert = function(req, res, sql){
     pool.connect().then( client => {
         client.query(sql, function(err, result){
             if (err){
-                client.end()
+                client.release()
                 res.status(500).send(err);
             }else{
-                client.end()
+                client.release()
                 res.status(200).send(result.rows);
             }
         })
@@ -32,10 +32,10 @@ exports.execUpdate = function(req, res, sql){
     pool.connect().then( client => {
         client.query(sql, function(err, result){
             if (err){
-                client.end()
+                client.release()
                 res.status(500).send(err);
             }else{
-                client.end()
+                client.release()
                 if (result.rowCount > 0){
                     res.status(200).send();
                 }else{
@@ -50,26 +50,11 @@ exports.execSelect = function(req, res, sql){
     pool.connect().then( client => {
         client.query(sql, function(err, result){
             if (err){
-                client.end()
+                client.release()
                 res.status(500).send(err);
             }else{
-                client.end()
+                client.release()
                 res.status(200).send({ 'data': JSON.stringify(result.rows) });
-            }
-        })
-    })    
-}
-
-exports.execSelectWithResult = function(res, sql, result, callback){
-    pool.connect().then( client => {
-        client.query(sql, function(err, result){
-            if (err){
-                client.end()
-                // res.status(500).send(err);
-                result = {error: err}
-            }else{
-                client.end()
-                result = result.rows
             }
         })
     })    
