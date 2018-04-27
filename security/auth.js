@@ -6,10 +6,10 @@ exports.checkAuth = function(req, res, callback){
     db.pool.connect().then( client => {
         client.query(sql, function(err, result){
             if (err){
-                client.end()
+                client.release()
                 res.status(500).send(err);
             }else{
-                client.end()
+                client.release()
                 if (result.rows.length == 0){
                     res.status(401).send();
                 }else{
